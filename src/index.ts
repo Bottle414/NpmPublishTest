@@ -6,7 +6,7 @@ export { Button, Card }
 
 export default {
   install(app: any) {
-    app.component(Button)
-    app.component(Card)
+    app.component(Button.name, Button)// 一定要起个名字
+    app.component(Card.name, Card)
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "bottle414-npm-test",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Bottle414",
   "description": "a test demo for npm publish and CI/CD",
   "keywords": [
