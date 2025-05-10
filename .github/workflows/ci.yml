@@ -28,6 +28,9 @@ jobs:
       - name: 🏗 Build the project
         run: npm run build
 
+      - name: Login to npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
       - name: Update version to npm with Changeset
         run: npx changeset publish
         env:
