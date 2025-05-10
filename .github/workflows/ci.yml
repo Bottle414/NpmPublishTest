@@ -1,0 +1,39 @@
+name: Build and Deploy Demo
+
+on: # 触发时机
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:    # 构建
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🏗 Build the project
+        run: npm run build
+
+      # 下面是 GitHub Pages 的部署方式，其他方式见下
+      - name: 📤 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
+      - name: Update version to npm with Changeset
+        run: npx changeset publish
+        # run: npx changeset version 不要这样，CI的部署是暂时的，变更文件不会被提交到git，就白跑了
+        # 最好是手动修改版本，然后再push让ci自动发布
+        # 我嘞个缩进语法啊

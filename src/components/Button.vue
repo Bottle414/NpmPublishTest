@@ -21,6 +21,9 @@
             default: '#333'
         }
     })
+    defineOptions({
+        name: 'BButton'
+    })
 </script>
 
 <style>
